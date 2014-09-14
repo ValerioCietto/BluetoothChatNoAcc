@@ -228,6 +228,9 @@ public class BluetoothChat extends Activity implements SensorEventListener{
                 longitude = gps.getLongitude();
                 text= "lat: "+latitude+" lon: "+longitude;       
     		}
+    		if(oldlatitude!=latitude){
+    			text = text+" mt: "+gps2m((float)oldlatitude,(float)oldlongitude,(float)latitude,(float)longitude);
+    		}
     		oldlatitude=latitude;
     		oldlongitude=longitude;
             tv.setText(text);
