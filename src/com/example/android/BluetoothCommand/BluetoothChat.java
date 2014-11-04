@@ -20,6 +20,8 @@ package com.example.android.BluetoothCommand;
 
 import java.io.IOException;
 
+import com.example.android.BluetoothCommand.JoystickView.OnJoystickMoveListener;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -56,7 +58,7 @@ import android.widget.Toast;
 /**
  * This is the main Activity that displays the current chat session.
  */
-public class BluetoothChat extends Activity implements SensorEventListener{
+public class BluetoothChat extends Activity implements SensorEventListener, OnJoystickMoveListener{
     // Debugging
 	final float NOISE = (float)0.2;
 	final float TOLERANCE = (float)2;
@@ -150,7 +152,8 @@ public class BluetoothChat extends Activity implements SensorEventListener{
         tv = (TextView) findViewById(R.id.textView1);
         // Get local Bluetooth adapter
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
+        JoystickView joystickView = (JoystickView)findViewById(R.id.joystickView1);
+        joystickView.setOnJoystickMoveListener(this, 200);
         // If the adapter is null, then Bluetooth is not supported
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
@@ -200,13 +203,13 @@ public class BluetoothChat extends Activity implements SensorEventListener{
         return 6366000*tt;
     }
     public void up (View v){
-    	sendMessage("a");
+    	sendMessage("w");
     }
     public void down (View v){
-    	sendMessage("c");
+    	sendMessage("s");
     }
     public void steersx (View v){
-    	sendMessage("s");
+    	sendMessage("a");
     }
     public void steerdx (View v){
     	sendMessage("d");
@@ -503,6 +506,40 @@ public class BluetoothChat extends Activity implements SensorEventListener{
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void onValueChanged(int angle, int power, int direction) {
+		tv.setText("angle: "+angle+" power: "+power+" dir "+direction);
+		switch (direction) {
+		case 1:
+			sendMessage("d");
+			break;
+		case 2:
+			sendMessage("wd");
+			break;
+		case 3:
+			sendMessage("w");
+			break;
+		case 4:
+			sendMessage("wa");
+			break;
+		case 5:
+			sendMessage("a");
+			break;
+		case 6:
+			sendMessage("sa");
+			break;	
+		case 7:
+			sendMessage("s");
+			break;
+		case 8:
+			sendMessage("sd");
+			break;	
+		default:
+			sendMessage("n");
+			break;
+		}
 	}
 
 }

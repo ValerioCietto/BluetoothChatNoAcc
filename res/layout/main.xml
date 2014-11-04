@@ -21,7 +21,7 @@
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:layout_above="@+id/button_send"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/button2"
         android:layout_weight="1"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll" />
@@ -46,46 +46,6 @@
         android:layout_alignParentRight="true"
         android:text="@string/send" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:text="up" android:onClick="up"/>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button1"
-        android:text="down" android:onClick="down"/>
-    
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button2"
-        android:text="sx" android:onClick="steersx"/>
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button3"
-        android:text="dx" android:onClick="steerdx"/>
-    
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button4"
-        android:text="o" android:onClick="getGPSdata"/>
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -93,5 +53,50 @@
         android:layout_alignParentLeft="true"
         android:layout_alignTop="@+id/in"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:onClick="up"
+        android:padding="20dp"
+        android:text="up" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button4"
+        android:onClick="down"
+        android:padding="20dp"
+        android:text="down" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:onClick="steersx"
+        android:padding="20dp"
+        android:text="sx" />
+
+    <com.example.android.BluetoothCommand.JoystickView
+        android:id="@+id/joystickView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/button4" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/button1"
+        android:onClick="steerdx"
+        android:padding="20dp"
+        android:text="dx" />
 
 </RelativeLayout>
